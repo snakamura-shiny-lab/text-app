@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { Child2 } from "./Child2";
-import RNFS from 'react-native-fs';
+//import RNFS from 'react-native-fs';
 
 export const Child1 = () => {
     const [text, setText] = useState("");
@@ -12,11 +12,19 @@ export const Child1 = () => {
         setShowString((p) => !p)
     };
 
-    // useEffect(() => {
-    //     fetch("texts/text1.txt")
-    //         .then(response => response.text())
-    //         .then(data => setText(data.split('\n')));
-    //     }, []);
+    useEffect(() => {
+        const fetchText = async () => {
+            const response = await fetch(`texts/text1.txt`);
+            const text = await response.text();
+            
+            console.log(text)
+            // const json = await response.json();
+        }
+        fetchText();
+        // fetch("texts/text1.txt")
+        //     .then(response => response.text())
+        //     .then(data => setText(data.split('\n')[1]));
+        }, []);
 
     return (
         <>
